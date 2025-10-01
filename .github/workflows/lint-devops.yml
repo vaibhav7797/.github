@@ -1,5 +1,6 @@
 name: Lint & Security (DevOps)
 on: [pull_request, push]
 jobs:
-  call:
+  lint:
     uses: ./.github/workflows/reusable-devops-lint.yml
+    secrets: inherit

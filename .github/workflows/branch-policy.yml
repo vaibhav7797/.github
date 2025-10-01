@@ -4,4 +4,4 @@ on:
     types: [opened, edited, synchronize]
 jobs:
   call:
-    uses: vaibhav7797/.github/.github/workflows/reusable-branch-policy.yml@central-org
+    uses: ./.github/workflows/reusable-devops-lint.yml

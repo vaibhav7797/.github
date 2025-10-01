@@ -2,4 +2,4 @@ name: Lint & Security (DevOps)
 on: [pull_request, push]
 jobs:
   call:
-    uses: vaibhav7797/.github/.github/workflows/reusable-devops-lint.yml@central-org
+    uses: ./.github/workflows/reusable-devops-lint.yml

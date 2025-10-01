@@ -4,4 +4,4 @@ on:
     paths: ["**/Dockerfile", "docker/**"]
 jobs:
   call:
-    uses: vaibhav7797/.github/.github/workflows/reusable-image-scan.yml@central-org
+    uses: ./.github/workflows/reusable-devops-lint.yml

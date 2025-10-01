@@ -3,4 +3,3 @@ on: [pull_request, push]
 jobs:
   lint:
     uses: ./.github/workflows/reusable-devops-lint.yml
-    secrets: inherit

@@ -1,23 +1,26 @@
-# Summary
+# Pull Request Template
+
+## Summary
+
 <!-- Brief description of what this PR does -->
 
-- Related Issue / Ticket: #[issue number]  
+- Related Issue / Ticket: #[issue number]
 - Change type: Feature / Bug / Config / Pipeline / Refactor
 
-# Changes
+## Changes
 
-- CI/CD or deployment updates  
-- Infrastructure / configuration changes  
+- CI/CD or deployment updates
+- Infrastructure / configuration changes
 - Monitoring / logging updates (if any)
 
-# Checklist
+## Checklist
 
-- [ ] Tests executed / CI passed  
-- [ ] Deployment steps verified  
-- [ ] Rollback steps documented  
-- [ ] Monitoring / alerts updated  
+- [ ] Tests executed / CI passed
+- [ ] Deployment steps verified
+- [ ] Rollback steps documented
+- [ ] Monitoring / alerts updated
 
-# Deployment Notes
+## Deployment Notes
 
-- Environments affected: dev / staging / prod  
-- Rollout strategy: Canary / Blue-Green / Standard  
+- Environments affected: dev / staging / prod
+- Rollout strategy: Canary / Blue-Green / Standard

@@ -1,8 +1,6 @@
 name: Reusable - Container Scan
 on:
   workflow_call:
-    secrets:
-      inherit: true
 jobs:
   trivy-fs:
     runs-on: ubuntu-latest

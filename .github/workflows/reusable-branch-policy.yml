@@ -1,8 +1,6 @@
 name: Reusable - Branch & PR Policy
 on:
   workflow_call:
-    secrets:
-      inherit: true
 jobs:
   pr-title:
     runs-on: ubuntu-latest

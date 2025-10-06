@@ -1,0 +1,7 @@
+name: Container Scan
+on:
+  pull_request:
+    paths: ["**/Dockerfile", "docker/**"]
+jobs:
+  call:
+    uses: ./.github/workflows/reusable-image-scan.yml

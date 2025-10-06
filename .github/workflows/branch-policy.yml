@@ -1,0 +1,7 @@
+name: Branch & PR Policy
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+jobs:
+  call:
+    uses: ./.github/workflows/reusable-branch-policy.yml

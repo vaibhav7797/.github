@@ -1,0 +1,6 @@
+title = "Gitleaks Config"
+
+[[rules]]
+id = "GenericAPIKey"
+description = "Detect generic API keys"
+regex = "[A-Za-z0-9]{32,}"

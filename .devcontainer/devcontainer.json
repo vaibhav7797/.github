@@ -1,0 +1,17 @@
+  "name": "Cloud DevOps",
+  "build": { "dockerfile": "Dockerfile" },
+  "features": {},
+  "postCreateCommand": "make bootstrap",
+  "customizations": { "vscode": { "extensions": [
+    "EditorConfig.EditorConfig",
+    "eamodio.gitlens",
+    "esbenp.prettier-vscode",
+    "hashicorp.terraform",
+    "ms-azuretools.vscode-docker",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "redhat.ansible",
+    "timonwong.shellcheck",
+    "golang.go",
+    "ms-python.python"
+  ]}}
+}

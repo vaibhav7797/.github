@@ -2,4 +2,11 @@
 extends:
   - "@commitlint/config-conventional"
 rules:
-  subject-case: [2, "always", ["sentence-case", "lower-case"]]
+  subject-case:
+    - 2
+    - "always"
+    -
+      - "sentence-case"
+      - "lower-case"
+ignorePatterns:
+  - '^\[pre-commit.ci\]'

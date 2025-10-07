@@ -5,6 +5,14 @@ set -euo pipefail
 # Get the latest commit message title (first line)
 pr_title="$(git log -1 --pretty=%s)"
 
+# -------------------------------
+# Whitelist pre-commit.ci commits
+# -------------------------------
+if [[ "$pr_title" =~ ^\[pre-commit\.ci\] ]]; then
+  echo "✅ Whitelisted commit: $pr_title"
+  exit 0
+fi
+
 # Regex pattern for Conventional Commits
 # Format: type(scope?): subject
 regex='^(feat|fix|chore|docs|style|refactor|perf|test|ci)(\([a-z0-9._-]+\))?: .+'

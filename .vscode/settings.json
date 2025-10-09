@@ -5,5 +5,12 @@
   "editor.rulers": [100],
   "yaml.schemas": { "kubernetes": "k8s/**/*.yaml" },
   "ansible.validation.enabled": true,
-  "terraform.codelens.enabled": true
+  "terraform.codelens.enabled": true,
+  "files.autoSave": "afterDelay",
+  "explorer.confirmDragAndDrop": false
+}
+
+{
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDragAndDrop": false
 }

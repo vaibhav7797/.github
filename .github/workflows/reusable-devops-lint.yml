@@ -13,6 +13,13 @@ jobs:
         with:
           python-version: "3.12"
       - run: pipx install pre-commit
+      - name: 🧩 Install Hadolint
+      - name: 🧩 Install Hadolint
+        run: |
+          wget -O /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x /usr/local/bin/hadolint
+
       - run: pre-commit run --all-files
 
   editor-policy:

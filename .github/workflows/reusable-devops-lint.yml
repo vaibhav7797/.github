@@ -38,6 +38,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           test -f .editorconfig
-  #         test -f .vscode/settings.json
-  #         test -f .devcontainer/devcontainer.json
-  #         test -f .devcontainer.json
+          test -f .devcontainer/devcontainer.json
+          test -f .vscode/settings.json

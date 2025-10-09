@@ -21,7 +21,16 @@ jobs:
             https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
           chmod +x /usr/local/bin/hadolint
 
-      - run: pre-commit run --all-files
+      - name: 🪝 Fix detached HEAD for branch-name hook
+        run: |
+          # If we're in a detached HEAD, try to find the branch
+          if [ "$(git symbolic-ref --short HEAD 2>/dev/null)" = "" ]; then
+            echo "Detached HEAD detected, trying to set branch..."
+            # Attempt to set branch from GITHUB_REF
+            git checkout -B "${GITHUB_REF#refs/heads/}"
+          fi
+
+      - run: ⚡ pre-commit run --all-files
 
   editor-policy:
     runs-on: ubuntu-latest

@@ -20,7 +20,7 @@ jobs:
             https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
           chmod +x /usr/local/bin/hadolint
       - run: pipx install pre-commit
-      - run: ⚡ pre-commit run --all-files
+      - run: pre-commit run --all-files
 
   editor-policy:
     runs-on: ubuntu-latest

@@ -35,7 +35,14 @@ jobs:
 
       - name: "🔍 Verify Editor Configuration Files"
         run: |
-          test -f .editorconfig
-          test -f .devcontainer/devcontainer.json
-          test -f .vscode/settings.json
+          set -e
+          test -f .editorconfig || { \
+            echo ".editorconfig ❌ missing"; exit 1; \
+          }
+          test -f .devcontainer/devcontainer.json || { \
+            echo "devcontainer.json ❌ missing"; exit 1; \
+          }
+          test -f .vscode/settings.json || { \
+            echo "settings.json ❌ missing"; exit 1; \
+          }
           echo "✅ Editor configuration policy passed!"

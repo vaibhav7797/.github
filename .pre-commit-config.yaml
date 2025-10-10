@@ -55,14 +55,6 @@ repos:
         files: ^ansible/|.*\.(yml|yaml)$
         args: ['--skip', 'yaml[empty-lines]']
 
-  # Python
-  - repo: https://github.com/psf/black
-    rev: 25.9.0
-    hooks: [{id: black, files: ^python/}]
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.13.3
-    hooks: [{id: ruff, args: ["--fix"], files: ^python/}]
-
 
   # Conventional Commits (commit-msg)
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook

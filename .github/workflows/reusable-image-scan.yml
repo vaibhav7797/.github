@@ -1,12 +1,22 @@
-name: Reusable - Container Scan
+---
+name: "🐳 Reusable - Container Scan"
+
 on:
   workflow_call:
+
 jobs:
   trivy-fs:
+    name: "🔍 Trivy File System Scan"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: aquasecurity/trivy-action@0.28.0
+      - name: "📦 Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "🧠 Run Trivy Security Scan"
+        uses: aquasecurity/trivy-action@0.28.0
         with:
           scan-type: fs
           severity: CRITICAL,HIGH
+
+      - name: "✅ Scan Completed"
+        run: echo "Trivy scan finished successfully — check results above!"

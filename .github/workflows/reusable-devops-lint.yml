@@ -6,7 +6,7 @@ on:
 
 jobs:
   precommit:
-    name: "🧩 Pre-Commit Lint & Security Checks"
+    name: "🧩 Pre-Commit Lint's & Security Checks"
     runs-on: ubuntu-latest
     steps:
       - name: "📦 Checkout Repository"
@@ -19,17 +19,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: "🔧 Install Hadolint"
-        run: |
-          wget -O /usr/local/bin/hadolint \
-            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
-          chmod +x /usr/local/bin/hadolint
-
       - name: "⚙️ Install Pre-Commit"
         run: pipx install pre-commit
 
       - name: "🚀 Run Pre-Commit Hooks"
         run: pre-commit run --all-files
+
 
   editor-policy:
     name: "📝 Editor & DevContainer Policy Check"
@@ -40,7 +35,14 @@ jobs:
 
       - name: "🔍 Verify Editor Configuration Files"
         run: |
-          test -f .editorconfig
-          test -f .devcontainer/devcontainer.json
-          test -f .vscode/settings.json
+          set -e
+          test -f .editorconfig || { \
+            echo ".editorconfig ❌ missing"; exit 1; \
+          }
+          test -f .devcontainer/devcontainer.json || { \
+            echo "devcontainer.json ❌ missing"; exit 1; \
+          }
+          test -f .vscode/settings.json || { \
+            echo "settings.json ❌ missing"; exit 1; \
+          }
           echo "✅ Editor configuration policy passed!"

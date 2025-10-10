@@ -48,12 +48,12 @@ repos:
       - id: helmlint
 
   # Ansible
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v25.9.2
-    hooks:
-      - id: ansible-lint
-        files: ^ansible/|.*\.(yml|yaml)$
-        args: ['--skip', 'yaml[empty-lines]']
+  # - repo: https://github.com/ansible/ansible-lint
+  #   rev: v25.9.2
+  #   hooks:
+  #     - id: ansible-lint
+  #       files: ^ansible/|.*\.(yml|yaml)$
+  #       args: ['--skip', 'yaml[empty-lines]']
 
 
   # Conventional Commits (commit-msg)

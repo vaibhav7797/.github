@@ -19,17 +19,59 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: "🔧 Install Hadolint"
-        run: |
-          wget -O /usr/local/bin/hadolint \
-            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
-          chmod +x /usr/local/bin/hadolint
-
       - name: "⚙️ Install Pre-Commit"
         run: pipx install pre-commit
 
       - name: "🚀 Run Pre-Commit Hooks"
         run: pre-commit run --all-files
+
+  yaml-lint:
+    name: "📝 Yaml-lint Check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📦 Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: 🔍 yaml-lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          config_data: |
+            rules:
+              line-length:
+                max: 450
+                level: warning
+              comments-indentation:
+                 level: error
+              indentation:
+                  level: error
+              trailing-spaces:
+                  level: error
+              new-line-at-end-of-file:
+                  level: error
+              document-start:
+                  level: error
+              document-end:
+                  level: error
+              key-duplicates:
+                  level: error
+              braces:
+                  level: error
+              brackets:
+                  level: error
+              colons:
+                  level: error
+              commas:
+                  level: error
+              comments:
+                  level: error
+              empty-lines:
+                  level: error
+              empty-values:
+                  level: warning
+              float-values:
+                  level: error
+              hyphens:
+                  level: error
 
   editor-policy:
     name: "📝 Editor & DevContainer Policy Check"

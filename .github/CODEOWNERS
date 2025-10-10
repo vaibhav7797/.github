@@ -1,6 +1,4 @@
-terraform/   @platform-team
+terraform/   @vaibhav7797
 charts/      @sre-team
 k8s/         @sre-team
 ansible/     @devops-team
-go/          @backend-team
-python/      @backend-team

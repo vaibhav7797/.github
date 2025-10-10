@@ -41,40 +41,20 @@ repos:
       - id: terraform_tfsec
       - id: terraform_checkov
 
-  # K8s / Helm
-  # - repo: https://github.com/yannh/kubeconform
-  #   rev: v0.7.0
-  #   hooks:
-  #     - id: kubeconform
-  #       args: ["-strict", "-summary"]
-  #       files: ^(k8s/|charts/|.*\.(yaml|yml)$)
-  # - repo: https://github.com/helm/helm
-  #   rev: v3.19.0
-  #   hooks:
-  #     - id: helm-lint
-  #       files: ^charts/
+  # Helm
+  - repo: https://github.com/gruntwork-io/pre-commit
+    rev: v0.1.30
+    hooks:
+      - id: helmlint
 
   # Ansible
   # - repo: https://github.com/ansible/ansible-lint
-  #   rev: v25.9.1
+  #   rev: v25.9.2
   #   hooks:
   #     - id: ansible-lint
   #       files: ^ansible/|.*\.(yml|yaml)$
+  #       args: ['--skip', 'yaml[empty-lines]']
 
-  # Python
-  - repo: https://github.com/psf/black
-    rev: 25.9.0
-    hooks: [{id: black, files: ^python/}]
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.13.3
-    hooks: [{id: ruff, args: ["--fix"], files: ^python/}]
-
-  # Go
-  - repo: https://github.com/golangci/golangci-lint
-    rev: v2.5.0
-    hooks:
-      - id: golangci-lint
-        files: ^go/
 
   # Conventional Commits (commit-msg)
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook

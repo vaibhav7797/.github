@@ -1,36 +1,42 @@
 {
-  "name": "Cloud DevOps",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "."
+  "name": "DevOps Universal Container 🧰",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers/features/aws-cli:1": {},
+    "ghcr.io/devcontainers/features/azure-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": { "version": "lts" },
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
-  "postCreateCommand": "echo 'Container is ready!'",
+
   "customizations": {
     "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/bash",
+        "editor.formatOnSave": true
+      },
       "extensions": [
-        "EditorConfig.EditorConfig",
-        "eamodio.gitlens",
-        "esbenp.prettier-vscode",
         "hashicorp.terraform",
+        "ms-azuretools.vscode-azureterraform",
         "ms-azuretools.vscode-docker",
         "ms-kubernetes-tools.vscode-kubernetes-tools",
-        "redhat.ansible",
-        "timonwong.shellcheck",
-        "golang.go",
+        "redhat.vscode-yaml",
+        "eamodio.gitlens",
+        "github.vscode-github-actions",
         "ms-python.python",
-        "yzhang.markdown-all-in-one"
-      ],
-      "settings": {
-        "editor.formatOnSave": true,
-        "python.pythonPath": "/usr/bin/python3",
-        "go.gopath": "/workspace/go",
-        "go.useLanguageServer": true
-      }
+        "oderwat.indent-rainbow"
+      ]
     }
   },
-  "remoteUser": "vscode",
-  "containerEnv": {
-    "AWS_DEFAULT_REGION": "us-west-2"
-  },
-  "workspaceFolder": "/workspace"
+
+  "mounts": [
+    "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.kube,target=/root/.kube,type=bind,consistency=cached"
+  ],
+
+  "remoteUser": "root"
 }

@@ -1,0 +1,31 @@
+# Normalize line endings for text files
+* text=auto
+
+# Force LF endings for specific files
+*.sh text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.py text eol=lf
+*.rb text eol=lf
+*.js text eol=lf
+
+# Force CRLF for Windows batch files
+*.bat text eol=crlf
+
+# Treat binary files properly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+
+# Merge strategies
+*.lock merge=ours      # e.g., package-lock.json or Gemfile.lock
+
+# Mark certain files as linguistically neutral for diff
+*.md diff=markdown
+*.json diff=json

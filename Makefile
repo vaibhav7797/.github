@@ -1,31 +1,28 @@
-.PHONY: bootstrap lint tf-validate helm-lint k8s-validate ansible-lint docker-lint py-lint go-lint
-
+.PHONY: bootstrap
 bootstrap:
-	pipx install pre-commit commitizen || pip install --user pre-commit commitizen
-	pre-commit install --install-hooks
-	pre-commit install --hook-type commit-msg
-	@echo ":white_check_mark: Installed. Use 'cz commit' for Conventional Commits."
+	@echo "🔧 Bootstrapping DevOps tools..."
 
-lint:
-	pre-commit run --all-files
+	# Install pre-commit via pipx if not already installed
+	@if ! command -v pre-commit >/dev/null 2>&1; then \
+		echo "Installing pre-commit..."; \
+		pipx install pre-commit || pip install --user pre-commit; \
+	else \
+		echo "pre-commit already installed"; \
+	fi
 
-tf-validate:
-	cd terraform && terraform init -backend=false && terraform validate
+	# Install commitizen via pipx if not already installed
+	@if ! command -v cz >/dev/null 2>&1; then \
+		echo "Installing commitizen..."; \
+		pipx install commitizen || pip install --user commitizen; \
+	else \
+		echo "commitizen already installed"; \
+	fi
 
-helm-lint:
-	helm lint charts/* || true
+	# Ensure ~/.local/bin is in PATH for this session
+	@export PATH="$$HOME/.local/bin:$$PATH"
 
-k8s-validate:
-	kubeconform -summary -strict k8s || true
+	# Install pre-commit hooks
+	@pre-commit install --install-hooks
+	@pre-commit install --hook-type commit-msg
 
-ansible-lint:
-	ansible-lint ansible || true
-
-docker-lint:
-	hadolint docker/Dockerfile || true
-
-py-lint:
-	cd python && ruff check --fix . && black --check .
-
-go-lint:
-	cd go && golangci-lint run || true
+	@echo "✅ Bootstrap complete. Use 'cz commit' for Conventional Commits."

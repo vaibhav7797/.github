@@ -14,7 +14,7 @@
 
 .github/CODEOWNERS (example)
 
-terraform/   @platform-team
+terraform/   @vaibhav7797
 charts/      @sre-team
 k8s/         @sre-team
 ansible/     @devops-team

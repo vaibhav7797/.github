@@ -1,0 +1,6 @@
+terraform/   @platform-team
+charts/      @sre-team
+k8s/         @sre-team
+ansible/     @devops-team
+go/          @backend-team
+python/      @backend-team

@@ -1,24 +1,46 @@
-name: Reusable - Lint & Security (DevOps)
+---
+name: "🛡️ Reusable - Lint & Security (DevOps)"
 
 on:
   workflow_call:
 
 jobs:
   precommit:
+    name: "🧩 Pre-Commit Lint & Security Checks"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: "📦 Checkout Repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: "🐍 Setup Python"
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pipx install pre-commit
-      - run: pre-commit run --all-files
 
-  # editor-policy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - run: |
-  #         test -f .editorconfig
-  #         test -f .vscode/settings.json
-  #         test -f .devcontainer/devcontainer.json || test -f .devcontainer.json
+      - name: "🔧 Install Hadolint"
+        run: |
+          wget -O /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x /usr/local/bin/hadolint
+
+      - name: "⚙️ Install Pre-Commit"
+        run: pipx install pre-commit
+
+      - name: "🚀 Run Pre-Commit Hooks"
+        run: pre-commit run --all-files
+
+  editor-policy:
+    name: "📝 Editor & DevContainer Policy Check"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "📦 Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: "🔍 Verify Editor Configuration Files"
+        run: |
+          test -f .editorconfig
+          test -f .devcontainer/devcontainer.json
+          test -f .vscode/settings.json
+          echo "✅ Editor configuration policy passed!"

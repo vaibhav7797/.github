@@ -1,20 +1,32 @@
-name: Reusable - Branch & PR Policy
+---
+name: "✅ Reusable - Branch & PR Policy"
+
 on:
   workflow_call:
+
 jobs:
   pr-title:
+    name: "📝 Validate PR Title"
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@v5
+      - name: "🚀 Run semantic PR title check"
+        uses: amannn/action-semantic-pull-request@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   branch-name:
+    name: "🌿 Validate Branch Name"
     runs-on: ubuntu-latest
     steps:
-      - name: Check branch name
+      - name: "🔍 Check branch name format"
         run: |
           BRANCH="${{ github.head_ref }}"
-          if [[ ! "$BRANCH" =~ ^(feature|bugfix|chore|hotfix)\/([A-Z]+-[0-9]+-.+|[a-z0-9._-]+)$ ]]; then
-            echo "Invalid branch name: $BRANCH"
+          regex='^(feature|bugfix|chore|hotfix)/([A-Z]+-[0-9]+-.+|[a-z0-9._-]+)$'
+          if [[ ! "$BRANCH" =~ $regex ]]; then
+            echo "❌ Invalid branch name: $BRANCH"
+            echo "Expected format:"
+            echo "  feature/ABC-123-description"
+            echo "  or feature/shortname"
             exit 1
           fi
+          echo "✅ Branch name valid: $BRANCH"

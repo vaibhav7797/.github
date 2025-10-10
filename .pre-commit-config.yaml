@@ -1,39 +1,86 @@
+---
 repos:
-  # General hooks
+  # Core hygiene
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v6.0.0
     hooks:
-      - id: trailing-whitespace
+      - id: check-merge-conflict
       - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-json
-      - id: check-toml
+      - id: trailing-whitespace
       - id: check-added-large-files
       - id: detect-private-key
 
-  # Terraform linting & formatting
+  # Secrets
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.28.0
+    hooks:
+      - id: gitleaks
+        args: ["--config=.gitleaks.toml"]
+
+  # YAML
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        files: \.(yaml|yml)$
+
+  # Shell
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1
+    hooks:
+      - id: shellcheck
+
+
+  # Terraform
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.88.4
+    rev: v1.101.0
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
       - id: terraform_tflint
-      - id: terraform_trivy
+      - id: terraform_tfsec
+      - id: terraform_checkov
 
-  # Markdown linting
-  - repo: https://github.com/markdownlint/markdownlint
-    rev: v0.12.0
-    hooks:
-      - id: markdownlint
+  # K8s / Helm
+  # - repo: https://github.com/yannh/kubeconform
+  #   rev: v0.7.0
+  #   hooks:
+  #     - id: kubeconform
+  #       args: ["-strict", "-summary"]
+  #       files: ^(k8s/|charts/|.*\.(yaml|yml)$)
+  # - repo: https://github.com/helm/helm
+  #   rev: v3.19.0
+  #   hooks:
+  #     - id: helm-lint
+  #       files: ^charts/
 
-  # Dockerfile linting
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
-    hooks:
-      - id: hadolint
+  # Ansible
+  # - repo: https://github.com/ansible/ansible-lint
+  #   rev: v25.9.1
+  #   hooks:
+  #     - id: ansible-lint
+  #       files: ^ansible/|.*\.(yml|yaml)$
 
-  # Shell script linting
-  - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.9.0
+  # Python
+  - repo: https://github.com/psf/black
+    rev: 25.9.0
+    hooks: [{id: black, files: ^python/}]
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.13.3
+    hooks: [{id: ruff, args: ["--fix"], files: ^python/}]
+
+  # Go
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v2.5.0
     hooks:
-      - id: shellcheck
+      - id: golangci-lint
+        files: ^go/
+
+  # Conventional Commits (commit-msg)
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.23.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies:
+          - "@commitlint/config-conventional"

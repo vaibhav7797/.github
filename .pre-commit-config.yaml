@@ -12,28 +12,28 @@ repos:
 
   # Secrets
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.28.0
+    rev: v8.30.0
     hooks:
       - id: gitleaks
         args: ["--config=.gitleaks.toml"]
 
   # YAML
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         files: \.(yaml|yml)$
 
   # Shell
   - repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: v0.11.0.1-1
     hooks:
       - id: shellcheck
 
 
   # Terraform
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.101.0
+    rev: v1.109.1
     hooks:
       - id: terraform_fmt
       - id: terraform_validate
@@ -58,7 +58,7 @@ repos:
 
   # Conventional Commits (commit-msg)
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.23.0
+    rev: v9.26.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
